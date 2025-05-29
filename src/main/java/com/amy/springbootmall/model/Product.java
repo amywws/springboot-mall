@@ -1,18 +1,20 @@
 package com.amy.springbootmall.model;
 
+import com.amy.springbootmall.constant.ProductCategory;
+
 import java.util.Date;
 
 public class Product  {
 
     private Integer productId;
     private String productName;
-    private String descriptoin;
+    private String description;
     private Integer price;
     private Integer stock;
     private String imageUrl;
     private Date createdDate;
     private Date lastModifiedDate;
-    private String category;
+    private ProductCategory category;
 
     public Integer getProductId() {
         return productId;
@@ -30,12 +32,12 @@ public class Product  {
         this.productName = productName;
     }
 
-    public String getDescriptoin() {
-        return descriptoin;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptoin(String descriptoin) {
-        this.descriptoin = descriptoin;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getPrice() {
@@ -78,11 +80,11 @@ public class Product  {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    public String getCategory() {
+    public ProductCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(ProductCategory category) {
         this.category = category;
     }
 }
