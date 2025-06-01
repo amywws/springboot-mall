@@ -1,6 +1,7 @@
 package com.amy.springbootmall.service.impl;
 
 import com.amy.springbootmall.dao.UserDao;
+import com.amy.springbootmall.dto.UserLoginRequest;
 import com.amy.springbootmall.dto.UserRegisterRequest;
 import com.amy.springbootmall.model.User;
 import com.amy.springbootmall.service.UserService;
@@ -35,5 +36,22 @@ public class UserServiceImpl implements UserService {
         }
         // 創建帳號
         return userDao.createUser(userRegisterRequest);
+    }
+
+    @Override
+    public User login(UserLoginRequest userLoginRequest) {
+        User user = userDao.getUserByEmail(userLoginRequest.getEmail());
+
+        if(user == null){
+            logger.warn("該 email {} 尚未註冊", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        if(user.getPassword().equals(userLoginRequest.getPassword())){
+            return user;
+        }else{
+            logger.warn("email {} 的密碼不正確", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
     }
 }
